@@ -1,0 +1,19 @@
+{
+    "name": "bagus/odoo",
+    "description": "Odoo API",
+    "require": {
+        "php": "^5.3 || ^7.0",
+        "darkaonline/ripcord": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bagus\\Odoo\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/bsetiawan88/odoo"
+        }
+    ]
+}
