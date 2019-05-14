@@ -34,12 +34,12 @@ class Odoo
 
     public function searchRead($object, $search_params = [], $fields = []) {
         $this->model->execute_kw($this->database, $this->uid, $this->password,
-            $object, 'search_read', array(
-                $search_params
-            ),
-            array(
+            $object, 'search_read', [
+                [$search_params]
+            ],
+            [
                 'fields' => $fields
-            )
+            ]
         );
 
         $response = $this->_formatXML();
@@ -53,6 +53,14 @@ class Odoo
         }
 
         return $result;
+    }
+
+    public function create($object, $data) {
+        return $this->model->execute_kw($this->database, $this->uid, $this->password,
+            $object, 'create', [
+                $data
+            ]
+        );
     }
 
     private function _formatXML() {
