@@ -74,16 +74,11 @@ class Odoo
         $obj = new \stdClass();
 
         foreach ($res->struct->member as $property) {
-            if (isset($property->value->string)) {
-                $obj->{$property->name} = $property->value->string;
-            } else if (isset($property->value->int)) {
-                $obj->{$property->name} = $property->value->int;
-            } else if (isset($property->value->double)) {
-                $obj->{$property->name} = $property->value->double;
-            } else if (isset($property->value->boolean)) {
-                $obj->{$property->name} = $property->value->boolean == 0 ? FALSE : TRUE;
+            $prop = (get_object_vars($property->value));
+            if (!isset($prop['array'])) {
+                $obj->{$property->name} = current($prop);
             } else {
-                $obj->{$property->name} = $property->value;
+                $obj->{$property->name} = $prop['array']->data->value;
             }
         }
 
