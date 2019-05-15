@@ -35,7 +35,7 @@ class Odoo
     public function searchRead($object, $search_params = [], $fields = []) {
         $this->model->execute_kw($this->database, $this->uid, $this->password,
             $object, 'search_read', [
-                [$search_params]
+                $search_params
             ],
             [
                 'fields' => $fields
